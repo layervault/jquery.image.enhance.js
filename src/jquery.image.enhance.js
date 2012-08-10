@@ -1,3 +1,4 @@
+// TODO set a max-width and max-height and then only animate the dimension we will but up against
 (function($) {
   var
     options = {
