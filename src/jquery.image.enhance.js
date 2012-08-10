@@ -2,11 +2,14 @@
   var
     options = {
       transitionLength: 250,
-      easing: 'ease-out'
+      easing          : 'ease-out',
+      padding         : 100,
+      top             : 100
     },
     setup,
     prefixes,
-    clearData;
+    clearData,
+    computeTargets;
 
   prefixes = [
     '',
@@ -69,6 +72,27 @@
       .data('options',      null);
   };
 
+  computeTargets = function (opts) {
+    var
+      width,
+      top,
+      left,
+      $window = $(window),
+      windowWidth = $(window).width();
+
+    options = $.extend(options, opts);
+
+    width = options.width || (windowWidth - (options.padding * 2));
+    left = options.padding;
+    top = options.top || options.width;
+
+    return {
+      width: width,
+      left: left,
+      top: top
+    }
+  };
+
   //-- Methods to attach to jQuery sets
 
   $.fn.enhance = function(opts) {
@@ -78,7 +102,8 @@
       classes,
       cloneId = randomClass(),
       highResSrc = $e.attr('data-high-res-src'),
-      highResImage;
+      highResImage,
+      targets;
 
     if ($e.length === 0) {
       return;
@@ -102,10 +127,11 @@
     opts.sourceLeft   = $e.offset().left;
     opts.sourceTop    = $e.offset().top;
 
-    opts.targetWidth  = 900;
-    opts.targetHeight = 900;
-    opts.targetLeft   = 100;
-    opts.targetTop    = 100;
+    targets = computeTargets(opts);
+
+    opts.targetWidth  = targets.width;
+    opts.targetLeft   = targets.left;
+    opts.targetTop    = targets.top;
 
     classes = setup(opts);
 
