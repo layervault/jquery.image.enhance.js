@@ -42,7 +42,7 @@
         " width: " + options.targetWidth + "px !important; } " +
       "." + zoomDownClass + "{ top: " + options.sourceTop + "px; left: " + options.sourceLeft + "px;" +
         " width: " + options.sourceWidth + "px; }" +
-      "." + transitionClass + "{ z-index: 9999; position: absolute; " + transition + " }"
+      "." + transitionClass + "{ -webkit-transform: translateZ(0); z-index: 9999; position: absolute; " + transition + " }"
     );
 
     $head.append($style);

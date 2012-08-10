@@ -22,8 +22,21 @@ o888bood8P'  `Y8bod8P' `Y8bod8P'     .8'     `Y888""8o o888o o888o
 
 <img data-high-res-src="images/enhance-highres.jpg" src="images/enhance.png" />
 
-<script>
+<p>
+  Press spacebar
+</p>
 
+<p>
+  Images from <a href="http://www.tymnarmstrong.com/">Tymm Armstrong</a> and NASA. Used without permission.
+</p>
+<script>
+$(function () {
+  $('body').keypress(function (event) {
+    if (event.keyCode === 32) {
+      $('img').toggleEnhance();
+    }
+  });
+});
 </script>
 </body>
 </html>
